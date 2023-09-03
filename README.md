@@ -1,4 +1,28 @@
-# Getting Started with Create React App
+# Musicolor
+
+## Get album cover, get the color, simple as that 😊
+
+How to start:
+
+### `git clone` this repo
+
+### `yarn install` to install the dependencies
+
+### `yarn start` to start the application
+
+## Getting Started with Create React App
+
+## Starting Stack
+
+Typescript
+Material UI
+Jest
+
+## Coding standards
+
+To be discussed
+
+---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
