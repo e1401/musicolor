@@ -1,28 +1,40 @@
-import { Box, TextField, InputAdornment } from "@mui/material";
+import { Stack, Box, TextField, InputAdornment, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 const SearchBox = () => {
   return (
-    <Box sx={{ display: "flex", flexWrap: "wrap" }}>
-      <div>
+    <Stack
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      height="100vh"
+      gap={2}
+    >
+      <Box width="35rem" p={2}>
         <TextField
+          fullWidth
           label="Search"
-         variant="outlined"
+          variant="outlined"
           defaultValue="Search for artist or album"
-          id="outlined"
-          sx={{ m: 1, width: "40ch" }}
+          id="search-field"
           InputProps={{
             startAdornment: (
-              <InputAdornment position="start"
-                  sx={{ p: "10px" }}
-                  aria-label="search">
-                  <SearchIcon />
+              <InputAdornment position="start" aria-label="search">
+                <SearchIcon />
               </InputAdornment>
             ),
           }}
         />
-      </div>
-    </Box>
+      </Box>
+      <Stack spacing={2} direction="row">
+        <Button disabled variant="contained" color="primary" size="large">
+          Search
+        </Button>
+        <Button disabled variant="outlined" color="primary" size="large">
+          Clear
+        </Button>
+      </Stack>
+    </Stack>
   );
 };
 

@@ -1,9 +1,8 @@
 // import Home from './pages/Home';
-import SearchBox from './pages/SearchBox';
+import SearchBox from "./pages/SearchBox";
 
 function App() {
-    return <SearchBox />;
+  return <SearchBox />;
 }
 
 export default App;
-
