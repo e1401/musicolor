@@ -10,12 +10,12 @@ const SearchBox = () => {
       height="100vh"
       gap={2}
     >
-      <Box width="35rem" p={2}>
+      <Box width="50%" p={2}>
         <TextField
           fullWidth
           label="Search"
           variant="outlined"
-          defaultValue="Search for artist or album"
+          placeholder="Search for artist or album"
           id="search-field"
           InputProps={{
             startAdornment: (
@@ -27,10 +27,21 @@ const SearchBox = () => {
         />
       </Box>
       <Stack spacing={2} direction="row">
-        <Button disabled variant="contained" color="primary" size="large">
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          aria-label="search"
+        >
           Search
         </Button>
-        <Button disabled variant="outlined" color="primary" size="large">
+        <Button
+          disabled
+          variant="outlined"
+          color="primary"
+          size="large"
+          aria-label="clear"
+        >
           Clear
         </Button>
       </Stack>
