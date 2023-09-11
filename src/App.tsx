@@ -1,7 +1,8 @@
-import Home from './pages/Home';
+// import Home from './pages/Home';
+import SearchBox from "./pages/SearchBox";
 
 function App() {
-    return <Home />;
+  return <SearchBox />;
 }
 
 export default App;
