@@ -28,6 +28,7 @@ const SearchBox = () => {
           label="Search"
           variant="outlined"
           placeholder="Search for artist or album"
+          autoFocus
           value={value || ""}
           onInput={handleSearch}
           InputProps={{
