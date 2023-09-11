@@ -1,15 +1,15 @@
 import { Stack, Box, TextField, InputAdornment, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 const SearchBox = () => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState<string>("");
 
   const handleClear = () => {
     setValue("");
   };
 
-  const handleSearch = (e: any) => {
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
 
@@ -29,7 +29,7 @@ const SearchBox = () => {
           variant="outlined"
           placeholder="Search for artist or album"
           autoFocus
-          value={value || ""}
+          value={value}
           onInput={handleSearch}
           InputProps={{
             startAdornment: (
