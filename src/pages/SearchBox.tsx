@@ -1,7 +1,18 @@
 import { Stack, Box, TextField, InputAdornment, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { useState } from "react";
 
 const SearchBox = () => {
+  const [value, setValue] = useState("");
+
+  const handleClear = () => {
+    setValue("");
+  };
+
+  const handleSearch = (e: any) => {
+    setValue(e.target.value);
+  };
+
   return (
     <Stack
       flexDirection="column"
@@ -10,16 +21,18 @@ const SearchBox = () => {
       height="100vh"
       gap={2}
     >
-      <Box width="50%" p={2}>
+      <Box width="40%" p={2}>
         <TextField
           fullWidth
+          id="input-search"
           label="Search"
           variant="outlined"
           placeholder="Search for artist or album"
-          id="search-field"
+          value={value || ""}
+          onInput={handleSearch}
           InputProps={{
             startAdornment: (
-              <InputAdornment position="start" aria-label="search">
+              <InputAdornment position="start">
                 <SearchIcon />
               </InputAdornment>
             ),
@@ -28,6 +41,7 @@ const SearchBox = () => {
       </Box>
       <Stack spacing={2} direction="row">
         <Button
+          disabled={!value}
           variant="contained"
           color="primary"
           size="large"
@@ -35,8 +49,10 @@ const SearchBox = () => {
         >
           Search
         </Button>
+
         <Button
-          disabled
+          disabled={!value}
+          onClick={handleClear}
           variant="outlined"
           color="primary"
           size="large"
