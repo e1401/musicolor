@@ -13,6 +13,10 @@ const SearchBox = () => {
     setValue(e.target.value);
   };
 
+  const handleSubmit = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
   return (
     <Stack
       flexDirection="column"
@@ -23,6 +27,7 @@ const SearchBox = () => {
     >
       <Box width="40%" p={2}>
         <TextField
+          onSubmit={handleSubmit}
           fullWidth
           id="input-search"
           label="Search"
