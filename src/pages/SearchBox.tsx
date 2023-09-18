@@ -1,15 +1,6 @@
 import { Stack, Box, TextField, InputAdornment, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { ChangeEvent, useState } from "react";
-import axios from "axios";
-
-// const getMusicItem = async () => {
-//   const config = { headers: { Accept: "application/json" } };
-//   const result = await axios.get("https://itunes.apple.com/search?term=");
-//   console.log(JSON.stringify(result.data));
-// };
-
-// console.log(getMusicItem());
 
 const SearchBox = () => {
   const [value, setValue] = useState<string>("");
@@ -24,8 +15,7 @@ const SearchBox = () => {
 
   const handleSubmit = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
-  }
-
+  };
 
   return (
     <Stack
@@ -37,7 +27,7 @@ const SearchBox = () => {
     >
       <Box width="40%" p={2}>
         <TextField
-        onSubmit={handleSubmit}
+          onSubmit={handleSubmit}
           fullWidth
           id="input-search"
           label="Search"
@@ -80,6 +70,5 @@ const SearchBox = () => {
     </Stack>
   );
 };
-
 
 export default SearchBox;
