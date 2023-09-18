@@ -28,7 +28,8 @@ describe("SearchBox", () => {
     const searchInput = screen.getByRole("textbox", { name: /search/i });
     userEvent.type(searchInput, "test");
     expect(searchInput).toHaveValue("test");
-    userEvent.click(screen.getByRole("button", { name: /clear/i }));
-    expect(screen.getByRole("textbox", { name: /search/i })).toHaveValue("");
+    const clearButton = screen.getByRole("button", { name: /clear/i });
+    userEvent.click(clearButton);
+    expect(searchInput).toHaveValue("");
   });
 });
