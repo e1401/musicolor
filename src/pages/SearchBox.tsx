@@ -3,6 +3,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import { ChangeEvent, useState } from "react";
 import axios from "axios";
 
+const apiURL = "https://itunes.apple.com/search?term=";
+
 const SearchBox = () => {
   const [value, setValue] = useState<string>("");
 
@@ -14,23 +16,10 @@ const SearchBox = () => {
     setValue(e.target.value);
   };
 
-  async function handleSearch() {
-    try {
-      const response = await axios.get(
-        "https://itunes.apple.com/search?term=",
-        {
-          params: {
-            term: value,
-            limit: 10
-          },
-        }
-      );
-      const result = response.data;
-      console.log(result);
-    } catch (error) {
-      console.error("Error fetching items", error);
-    }
-  }
+  const getSearchResults = async (searchValue: string) => {
+    const results = await axios.get(apiURL + searchValue + "&limit=10");
+    console.log("results are:", results.data);
+  };
 
   return (
     <Stack
@@ -62,7 +51,10 @@ const SearchBox = () => {
       </Box>
       <Stack spacing={2} direction="row">
         <Button
-          onClick={handleSearch}
+          onClick={() => {
+
+            getSearchResults(value)}
+          }
           disabled={!value}
           variant="contained"
           color="primary"
