@@ -1,7 +1,8 @@
 import { Stack, Box, TextField, InputAdornment, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, KeyboardEvent } from "react";
 import axios from "axios";
+
 
 const apiURL = "https://itunes.apple.com/search?term=";
 
@@ -31,7 +32,6 @@ const SearchBox = () => {
     >
       <Box width="40%" p={2}>
         <TextField
-          onSubmit={handleSubmit}
           fullWidth
           id="input-search"
           label="Search"
@@ -39,7 +39,12 @@ const SearchBox = () => {
           placeholder="Search for artist or album"
           autoFocus
           value={value}
-          onInput={handleInputSearch}
+          onChange={handleInputSearch}
+          onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
+            if (e.key === "Enter") {
+              getSearchResults(value);
+            }
+          }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -52,9 +57,8 @@ const SearchBox = () => {
       <Stack spacing={2} direction="row">
         <Button
           onClick={() => {
-
-            getSearchResults(value)}
-          }
+            getSearchResults(value);
+          }}
           disabled={!value}
           variant="contained"
           color="primary"
