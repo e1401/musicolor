@@ -1,6 +1,10 @@
 import { Stack, Box, TextField, InputAdornment, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, KeyboardEvent } from "react";
+import axios from "axios";
+
+
+const apiURL = "https://itunes.apple.com/search?term=";
 
 const SearchBox = () => {
   const [value, setValue] = useState<string>("");
@@ -9,12 +13,13 @@ const SearchBox = () => {
     setValue("");
   };
 
-  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInputSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
 
-  const handleSubmit = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+  const getSearchResults = async (searchValue: string) => {
+    const results = await axios.get(apiURL + searchValue + "&limit=10");
+    console.log("results are:", results.data);
   };
 
   return (
@@ -27,7 +32,6 @@ const SearchBox = () => {
     >
       <Box width="40%" p={2}>
         <TextField
-          onSubmit={handleSubmit}
           fullWidth
           id="input-search"
           label="Search"
@@ -35,7 +39,12 @@ const SearchBox = () => {
           placeholder="Search for artist or album"
           autoFocus
           value={value}
-          onInput={handleSearch}
+          onChange={handleInputSearch}
+          onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
+            if (e.key === "Enter") {
+              getSearchResults(value);
+            }
+          }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -47,6 +56,9 @@ const SearchBox = () => {
       </Box>
       <Stack spacing={2} direction="row">
         <Button
+          onClick={() => {
+            getSearchResults(value);
+          }}
           disabled={!value}
           variant="contained"
           color="primary"
