@@ -3,7 +3,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import { ChangeEvent, useState, KeyboardEvent } from "react";
 import axios from "axios";
 
-
 const apiURL = "https://itunes.apple.com/search?term=";
 
 const SearchBox = () => {
@@ -19,8 +18,14 @@ const SearchBox = () => {
 
   const getSearchResults = async (searchValue: string) => {
     const results = await axios.get(apiURL + searchValue + "&limit=10");
+    
     console.log("results are:", results.data);
+    return results;
+   
   };
+
+  // const searchResults = getSearchResults(searchValue);
+  // console.log("Search results are: ", searchResults);
 
   return (
     <Stack
@@ -38,8 +43,9 @@ const SearchBox = () => {
           variant="outlined"
           placeholder="Search for artist or album"
           autoFocus
+          type="text"
           value={value}
-          onChange={handleInputSearch}
+          onInput={handleInputSearch}
           onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
             if (e.key === "Enter") {
               getSearchResults(value);
@@ -60,6 +66,7 @@ const SearchBox = () => {
             getSearchResults(value);
           }}
           disabled={!value}
+          // type="submit"
           variant="contained"
           color="primary"
           size="large"

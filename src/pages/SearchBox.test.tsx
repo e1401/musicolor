@@ -17,8 +17,9 @@ describe("SearchBox", () => {
     const clearButton = screen.getByRole("button", { name: /clear/i });
     expect(searchButton).toBeDisabled();
     expect(clearButton).toBeDisabled();
+
     const searchInput = screen.getByRole("textbox", { name: /search/i });
-    userEvent.type(searchInput, "test");
+    await userEvent.type(searchInput, "test");
 
     expect(searchButton).toBeEnabled();
     expect(clearButton).toBeEnabled();
@@ -26,10 +27,17 @@ describe("SearchBox", () => {
 
   it("should clear the search box when clear button is clicked", async () => {
     const searchInput = screen.getByRole("textbox", { name: /search/i });
-    userEvent.type(searchInput, "test");
+    await userEvent.type(searchInput, "test");
     expect(searchInput).toHaveValue("test");
     const clearButton = screen.getByRole("button", { name: /clear/i });
-    userEvent.click(clearButton);
+    await userEvent.click(clearButton);
     expect(searchInput).toHaveValue("");
+  });
+
+  it("should submit when pressing enter", async () => {
+    const searchInput = screen.getByRole("textbox", { name: /search/i });
+    await userEvent.type(searchInput, "test");
+    userEvent.type(searchInput, '{ key: "Enter: true", code: 13, charCode: 13 }');
+    expect(searchInput).toHaveValue("test");
   });
 });
