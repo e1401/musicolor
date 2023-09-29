@@ -1,4 +1,5 @@
 import { Typography, Stack, Link } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -28,8 +29,10 @@ const Home = () => {
         Musicolor
       </Typography>
       <Typography variant="caption" color="text.secondary" gutterBottom>
-        Get album cover, get the color, simple as that <br />
-        <Link href="SearchBox">Search</Link>
+        Get album cover, get the color, simple as{" "}
+        <Link component={RouterLink} to="/searchbox">
+          that.
+        </Link>
       </Typography>
     </Stack>
   );
