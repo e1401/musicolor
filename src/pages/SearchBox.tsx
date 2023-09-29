@@ -1,4 +1,11 @@
-import { Stack, Box, TextField, InputAdornment, Button } from "@mui/material";
+import {
+  Stack,
+  Box,
+  TextField,
+  InputAdornment,
+  Button,
+  Link,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { ChangeEvent, useState, KeyboardEvent } from "react";
 import axios from "axios";
@@ -18,14 +25,12 @@ const SearchBox = () => {
 
   const getSearchResults = async (searchValue: string) => {
     const results = await axios.get(apiURL + searchValue + "&limit=10");
-    
-    console.log("results are:", results.data);
+    // console.log("results are:", results.data);
     return results;
-   
   };
 
-  // const searchResults = getSearchResults(searchValue);
-  // console.log("Search results are: ", searchResults);
+  const searchResults = getSearchResults(value);
+  console.log("Search results are: ", searchResults);
 
   return (
     <Stack
@@ -36,6 +41,7 @@ const SearchBox = () => {
       gap={2}
     >
       <Box width="40%" p={2}>
+        <Link href="Results">Results</Link>
         <TextField
           fullWidth
           id="input-search"
@@ -45,7 +51,7 @@ const SearchBox = () => {
           autoFocus
           type="text"
           value={value}
-          onInput={handleInputSearch}
+          onChange={handleInputSearch}
           onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
             if (e.key === "Enter") {
               getSearchResults(value);
@@ -66,7 +72,6 @@ const SearchBox = () => {
             getSearchResults(value);
           }}
           disabled={!value}
-          // type="submit"
           variant="contained"
           color="primary"
           size="large"
