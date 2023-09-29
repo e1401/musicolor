@@ -6,6 +6,7 @@ import {
   Button,
   Link,
 } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import { ChangeEvent, useState, KeyboardEvent } from "react";
 import axios from "axios";
@@ -40,8 +41,10 @@ const SearchBox = () => {
       height="100vh"
       gap={2}
     >
+      <Link component={RouterLink} to="/results" paddingBottom={3}>
+        Results
+      </Link>
       <Box width="40%" p={2}>
-        <Link href="Results">Results</Link>
         <TextField
           fullWidth
           id="input-search"

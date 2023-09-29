@@ -8,8 +8,8 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="SearchBox" element={<SearchBox />} />
-        <Route path="Results" element={<Results />} />
+        <Route path="searchbox" element={<SearchBox />} />
+        <Route path="results" element={<Results />} />
       </Routes>
     </div>
   );
