@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 const Results = () => {
   return (
     <Stack
-      flexDirection="row"
+      flexDirection="column"
       justifyContent="center"
       alignItems="center"
       height="100vh"
@@ -18,54 +18,65 @@ const Results = () => {
       <Paper elevation={3}>
         <Card
           sx={{
-            maxWidth: 244,
-            padding: "2rem",
-            display: "flex",
-            flexDirection: "column",
+            maxWidth: "244px",
           }}
         >
           <CardMedia
             component="img"
             alt="artist cover"
-            height="100%"
+            height="200px"
             image="/"
           />
-          <Box sx={{ display: "flex", flexDirection: "column" }}>
+          <Box sx={{ padding: "16px" }}>
             <CardContent
               sx={{
                 display: "flex",
-                flexDirection: "row",
+                flexDirection: "column",
                 color: "primary.main",
-                fontSize: 34,
+                fontSize: "14px",
                 fontWeight: "medium",
-                padding: "1rem 0rem 1rem 0",
+                padding: "0",
+                paddingBottom: "0",
+                "--pb-last": "unset",
               }}
             >
-              <Typography component="div" gutterBottom paddingRight={2}>
-                artistName
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography gutterBottom paddingRight={2}>
+                  artistName
+                </Typography>
+                <Typography gutterBottom>release date</Typography>
+              </Box>
+
+              <Typography
+                gutterBottom
+                variant="h6"
+                color="text.primary"
+                sx={{
+                  fontSize: "20px",
+                  fontWeight: 500,
+                  lineHeight: "160%",
+                  letterSpacing: "0.15px",
+                }}
+              >
+                trackName
               </Typography>
-              <Typography component="div" gutterBottom>
-                release date
-              </Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Chip label="kind" size="medium" />
+                <Chip label="primaryGenreName" size="medium" variant="filled" />
+              </Box>
             </CardContent>
-            <Typography
-              gutterBottom
-              variant="h6"
-              component="div"
-              color="text.secondary"
-            >
-              trackName
-            </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                padding: "3rem 0.5rem 0.5rem 0",
-              }}
-            >
-              <Chip label="kind" size="medium" />
-              <Chip label="primaryGenreName" size="medium" />
-            </Box>
           </Box>
         </Card>
       </Paper>
