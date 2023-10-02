@@ -18,40 +18,46 @@ const Results = () => {
       <Paper elevation={3}>
         <Card
           sx={{
-            maxWidth: "244px",
+            width: "244px",
+            height: "376px",
           }}
         >
           <CardMedia
             component="img"
-            alt="artist cover"
+            alt="{artworkUrl100}"
             height="200px"
+            width="244px"
             image="/"
+            sx={{ bgcolor: "text.disabled" }}
           />
-          <Box sx={{ padding: "16px" }}>
-            <CardContent
+
+          <CardContent
+            sx={{
+              width: "212px",
+              height: "142px",
+              padding: "16px",
+              display: "flex",
+              flexDirection: "column",
+              color: "primary.main",
+              fontSize: "14px",
+              fontWeight: "medium",
+            }}
+          >
+            <Box
+              height="71px"
               sx={{
                 display: "flex",
-                flexDirection: "column",
-                color: "primary.main",
-                fontSize: "14px",
-                fontWeight: "medium",
-                padding: "0",
-                paddingBottom: "0",
-                "--pb-last": "unset",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                alignItems: "flex-end",
+                justifyContent: "flex-start",
+                alignContent: "flex-start",
               }}
             >
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Typography gutterBottom paddingRight={2}>
-                  artistName
-                </Typography>
-                <Typography gutterBottom>release date</Typography>
-              </Box>
+              <Typography gutterBottom paddingRight={2}>
+                artistName
+              </Typography>
+              <Typography gutterBottom>release date</Typography>
 
               <Typography
                 gutterBottom
@@ -66,18 +72,23 @@ const Results = () => {
               >
                 trackName
               </Typography>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Chip label="kind" size="medium" />
-                <Chip label="primaryGenreName" size="medium" variant="filled" />
-              </Box>
-            </CardContent>
-          </Box>
+            </Box>
+
+            <Box
+              height="71px"
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                justifyContent: "flex-start",
+                alignItems: "flex-end",
+                gap: "8px",
+              }}
+            >
+              <Chip label="kind" size="medium" />
+              <Chip label="primaryGenreName" size="medium" variant="filled" />
+            </Box>
+          </CardContent>
         </Card>
       </Paper>
     </Stack>
