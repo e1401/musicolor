@@ -4,6 +4,9 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
+import placeholder_img_artist_cover from "../images/placeholder_img_artist_cover.png";
+
+const artworkUrl = placeholder_img_artist_cover;
 
 const Results = () => {
   return (
@@ -23,14 +26,11 @@ const Results = () => {
           }}
         >
           <CardMedia
+            sx={{ width: "100%" }}
             component="img"
-            alt="{artworkUrl100}"
-            height="200px"
-            width="244px"
-            image="/"
-            sx={{ bgcolor: "text.disabled" }}
+            image={artworkUrl}
+            alt="Artist cover"
           />
-
           <CardContent
             sx={{
               width: "212px",
