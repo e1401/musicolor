@@ -6,9 +6,8 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import placeholder_img_artist_cover from "../images/placeholder_img_artist_cover.png";
 
-const artworkUrl = placeholder_img_artist_cover;
-
 const Results = () => {
+  const artworkUrl = placeholder_img_artist_cover;
   return (
     <Stack
       flexDirection="column"
