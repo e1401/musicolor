@@ -1,10 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import SearchBox from "./SearchBox";
+import { BrowserRouter } from "react-router-dom";
 
 describe("SearchBox", () => {
   beforeEach(() => {
-    render(<SearchBox />);
+    render(<SearchBox />, { wrapper: BrowserRouter });
   });
 
   it("should render the search box", () => {
@@ -37,7 +38,10 @@ describe("SearchBox", () => {
   it("should submit when pressing enter", async () => {
     const searchInput = screen.getByRole("textbox", { name: /search/i });
     await userEvent.type(searchInput, "test");
-    userEvent.type(searchInput, '{ key: "Enter: true", code: 13, charCode: 13 }');
+    userEvent.type(
+      searchInput,
+      '{ key: "Enter: true", code: 13, charCode: 13 }'
+    );
     expect(searchInput).toHaveValue("test");
   });
 });
