@@ -26,12 +26,12 @@ const SearchBox = () => {
 
   const getSearchResults = async (searchValue: string) => {
     const results = await axios.get(apiURL + searchValue + "&limit=10");
-    // console.log("results are:", results.data);
+    console.log("results are:", results.data);
     return results;
   };
 
-  const searchResults = getSearchResults(value);
-  console.log("Search results are: ", searchResults);
+  // const searchResults = getSearchResults(value);
+  // console.log("Search results are: ", searchResults);
 
   return (
     <Stack
