@@ -30,9 +30,6 @@ const SearchBox = () => {
     return results;
   };
 
-  // const searchResults = getSearchResults(value);
-  // console.log("Search results are: ", searchResults);
-
   return (
     <Stack
       flexDirection="column"

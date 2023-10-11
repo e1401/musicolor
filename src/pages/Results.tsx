@@ -1,18 +1,20 @@
-import { Stack } from "@mui/material";
-import ResultCard from "../features/ResultCard";
+import { Grid } from "@mui/material";
+import { ResultCard } from "../features/ResultCard";
 
 const Results = () => {
   return (
-    <Stack
-      flexDirection="column"
+    <Grid
+      container
+      spacing={2}
+      columns={2}
       justifyContent="center"
       alignItems="center"
-      height="100vh"
-      gap={2}
-      spacing={1}
+      direction="row"
     >
-      <ResultCard />
-    </Stack>
+      <Grid item xs="auto">
+        {ResultCard}
+      </Grid>
+    </Grid>
   );
 };
 
