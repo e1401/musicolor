@@ -29,8 +29,6 @@ const SearchBox = () => {
       .then((res) => {
         return res.data;
       });
-
-    console.log("Results are: ", results);
   };
 
   return (

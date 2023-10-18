@@ -42,12 +42,17 @@ const ResultCard = ({
             alignItems: "flex-end",
             justifyContent: "flex-start",
             alignContent: "flex-start",
-            color: "primary.main",
-            fontSize: "14px",
-            fontWeight: "medium",
           }}
         >
-          <Typography gutterBottom paddingRight={2}>
+          <Typography
+            gutterBottom
+            paddingRight={2}
+            sx={{
+              color: "primary.main",
+              fontSize: "14px",
+              fontWeight: "medium",
+            }}
+          >
             {artistName}
           </Typography>
           <Typography gutterBottom> {releaseDate}</Typography>
