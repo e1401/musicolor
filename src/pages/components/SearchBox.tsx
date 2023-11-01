@@ -1,53 +1,46 @@
-import {
-  Stack,
-  Box,
-  TextField,
-  InputAdornment,
-  Button,
-  Link,
-} from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
+import { Stack, Box, TextField, InputAdornment, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { ChangeEvent, useState, KeyboardEvent } from "react";
+import { ChangeEvent, useState, KeyboardEvent, FormEventHandler } from "react";
 import axios from "axios";
-import { API_URL } from "../config/API_URL";
+import { API_URL } from "../../config/API_URL";
+import { ResultType } from "../../types/result";
 
 const SearchBox = () => {
-  const [value, setValue] = useState<string>("");
+  const [searchResults, setSearchResults] = useState<ResultType[]>([]);
+
+  const [input, setInput] = useState<string>("");
 
   const handleClear = () => {
-    setValue("");
+    setInput("");
   };
 
   const handleInputSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+    setInput(e.target.value);
   };
 
   const getSearchResults = async (searchValue: string) => {
-    const results = await axios
-      .get(API_URL + `?term=${searchValue}&limit=10`)
-      .then((res) => {
-        return res.data;
-      });
+    try {
+      console.log("Fetching search results...");
+      const response = await axios
+        .get(API_URL + `?term=${searchValue}&limit=10`)
+        .then((response) => {
+          setSearchResults(response.data);
+          console.log(response.data);
+        });
+    } catch (error) {
+      console.error("Error fetching search results:", error);
+    }
   };
 
   return (
     <Stack
-      flexDirection="column"
-      justifyContent="center"
+      flexDirection="row"
+      justifyContent="flex-start"
       alignItems="center"
-      height="100vh"
+      margin={"10% 0"}
       gap={2}
     >
       <Box width="40%" p={2}>
-        <Link
-          component={RouterLink}
-          to="/results"
-          paddingBottom={2}
-          display="block"
-        >
-          Results
-        </Link>
         <TextField
           fullWidth
           id="input-search"
@@ -56,11 +49,11 @@ const SearchBox = () => {
           placeholder="Search for artist or album"
           autoFocus
           type="text"
-          value={value}
+          value={input}
           onChange={handleInputSearch}
           onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
             if (e.key === "Enter") {
-              getSearchResults(value);
+              getSearchResults(input);
             }
           }}
           InputProps={{
@@ -75,9 +68,9 @@ const SearchBox = () => {
       <Stack spacing={2} direction="row">
         <Button
           onClick={() => {
-            getSearchResults(value);
+            getSearchResults(input);
           }}
-          disabled={!value}
+          disabled={!input}
           variant="contained"
           color="primary"
           size="large"
@@ -87,7 +80,7 @@ const SearchBox = () => {
         </Button>
 
         <Button
-          disabled={!value}
+          disabled={!input}
           onClick={handleClear}
           variant="outlined"
           color="primary"
