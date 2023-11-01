@@ -1,13 +1,14 @@
 import { Stack, Box, TextField, InputAdornment, Button } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { ChangeEvent, useState, KeyboardEvent, FormEventHandler } from 'react';
+import { ChangeEvent, useState, KeyboardEvent } from 'react';
 import axios from 'axios';
 import { API_URL } from '../config/API_URL';
-import { ResultType } from '../types/result';
 
-const SearchBox = () => {
-    const [searchResults, setSearchResults] = useState<ResultType[]>([]);
+interface SearchBoxProps {
+    setSearchResults: React.Dispatch<React.SetStateAction<never[]>>;
+}
 
+const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
     const [input, setInput] = useState<string>('');
 
     const handleClear = () => {
@@ -20,12 +21,11 @@ const SearchBox = () => {
 
     const getSearchResults = async (searchValue: string) => {
         try {
-            console.log('Fetching search results...');
             const response = await axios
                 .get(API_URL + `?term=${searchValue}&limit=10`)
                 .then((response) => {
-                    setSearchResults(response.data);
-                    console.log(response.data);
+                    const results = response.data.results;
+                    setSearchResults(results);
                 });
         } catch (error) {
             console.error('Error fetching search results:', error);

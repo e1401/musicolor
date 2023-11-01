@@ -1,8 +1,4 @@
-import { Box, Chip } from '@mui/material';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
+import { Box, Chip, Card, CardMedia, Paper, Typography } from '@mui/material';
 import placeholder_img_artist_cover from '../images/placeholder_img_artist_cover.png';
 import { ResultType } from '../types/result';
 

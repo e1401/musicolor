@@ -1,8 +1,12 @@
-import { Box, FormHelperText, Grid, Stack } from '@mui/material';
+import { Box, Grid, Stack } from '@mui/material';
 import ResultCard from './ResultCard';
 import { ResultType, ResultList } from '../types/result';
 
-const Results = ({ results }: ResultType) => {
+type ResultsProps = {
+    searchResults: ResultList;
+};
+
+const Results = ({ searchResults }: ResultsProps) => {
     return (
         <Stack
             flexDirection='row'
@@ -21,7 +25,7 @@ const Results = ({ results }: ResultType) => {
                 alignItems='center'
                 direction='row'
             >
-                {results.map((result: ResultType, index: any) => {
+                {searchResults.map((result: ResultType, index: any) => {
                     return (
                         <Box key={index}>
                             <ResultCard
