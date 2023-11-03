@@ -6,3 +6,5 @@ export type ResultType = {
     releaseDate: string
     primaryGenreName: string
   }
+
+  export type ResultList = ResultType[];

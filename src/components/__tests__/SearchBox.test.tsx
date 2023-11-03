@@ -1,13 +1,16 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import SearchBox from './SearchBox';
+import SearchBox from '../SearchBox';
 import { BrowserRouter } from 'react-router-dom';
+import { act } from 'react-dom/test-utils';
 
 const user = userEvent.setup();
 
 describe('SearchBox', () => {
     beforeEach(async () => {
-        render(<SearchBox />, { wrapper: BrowserRouter });
+        await act(async () => {
+            render(<SearchBox />, { wrapper: BrowserRouter });
+        });
     });
 
     afterEach(() => {
@@ -33,14 +36,18 @@ describe('SearchBox', () => {
     });
 
     it('should clear the search box when clear button is clicked', async () => {
-        const searchInput = screen.getByRole('textbox', { name: /search/i });
+        const searchInput = await screen.findByRole('textbox', {
+            name: /search/i,
+        });
 
         await user.type(searchInput, 'test');
 
         await waitFor(() => {
             expect(searchInput).toHaveValue('test');
         });
-        const clearButton = screen.getByRole('button', { name: /clear/i });
+        const clearButton = await screen.findByRole('button', {
+            name: /clear/i,
+        });
         await user.click(clearButton);
 
         await waitFor(() => {
