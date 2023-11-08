@@ -23,7 +23,11 @@ const Results = ({ searchResults }: ResultsProps) => {
           <Grid item xs={8} md={3} key={index}>
             <ResultCard
               artistName={result.artistName}
-              trackName={result.trackName}
+              trackName={
+                result.trackName?.length > 27
+                  ? `${result.trackName.substring(0, 26)}...`
+                  : result.trackName
+              }
               artworkUrl100={result.artworkUrl100.replace("100x100", "500x500")}
               kind={result.kind}
               releaseDate={result.releaseDate.slice(0, 10)}
