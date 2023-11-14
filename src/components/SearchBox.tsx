@@ -1,4 +1,12 @@
-import { Stack, Box, TextField, InputAdornment, Button } from "@mui/material";
+import {
+  Stack,
+  Box,
+  TextField,
+  InputAdornment,
+  Button,
+  FormHelperText,
+} from "@mui/material";
+
 import SearchIcon from "@mui/icons-material/Search";
 import { ChangeEvent, useState, KeyboardEvent } from "react";
 import axios from "axios";
@@ -10,6 +18,7 @@ interface SearchBoxProps {
 
 const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
   const [input, setInput] = useState<string>("");
+  const [helperText, setHelperText] = useState("");
 
   const handleClear = () => {
     setInput("");
@@ -28,7 +37,7 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
       );
       setSearchResults(results);
     } catch (error) {
-      console.error("Error fetching search results:", error);
+      setHelperText("No results match criteria.");
     }
   };
 
@@ -40,8 +49,9 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
       alignItems="center"
       margin={3}
     >
-      <Box width="40%" p={2} flex="2 0 300px">
+      <Box width="40%" p={2} flex="2 0 400px">
         <TextField
+          aria-describedby="input-search"
           fullWidth
           id="input-search"
           label="Search"
@@ -64,12 +74,18 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
             ),
           }}
         />
+        <FormHelperText
+          id="input-search"
+          sx={{ color: "warning.main", fontSize: "14px", position: "absolute" }}
+        >
+          {helperText || " "}
+        </FormHelperText>
       </Box>
       <Stack
         spacing={2}
         direction="row"
         justifyContent="center"
-        flex="1 0 170px"
+        flex="1 0 100px"
       >
         <Button
           onClick={() => {
@@ -83,7 +99,6 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
         >
           Search
         </Button>
-
         <Button
           disabled={!input}
           onClick={handleClear}

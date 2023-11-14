@@ -47,6 +47,9 @@ const ResultCard = ({
               color: "primary.main",
               fontSize: "14px",
               fontWeight: "medium",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
             }}
           >
             {artistName}
@@ -56,6 +59,9 @@ const ResultCard = ({
               color: "primary.main",
               fontSize: "14px",
               fontWeight: "medium",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
             }}
           >
             {releaseDate}
