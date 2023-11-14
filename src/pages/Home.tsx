@@ -9,7 +9,6 @@ const Home = () => {
   return (
     <Grid container spacing={2} flexDirection={"column"}>
       <Typography
-        component="div"
         padding={5}
         gutterBottom
         sx={{

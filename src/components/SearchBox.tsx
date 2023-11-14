@@ -21,12 +21,12 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
 
   const getSearchResults = async (searchValue: string) => {
     try {
-      const response = await axios
-        .get(API_URL + `?term=${searchValue}&media=music&limit=10`)
-        .then((response) => {
-          const results = response.data.results;
-          setSearchResults(results);
-        });
+      const {
+        data: { results },
+      } = await axios.get(
+        API_URL + `?term=${searchValue}&media=music&limit=10`
+      );
+      setSearchResults(results);
     } catch (error) {
       console.error("Error fetching search results:", error);
     }
@@ -35,12 +35,12 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
   return (
     <Stack
       flexDirection="row"
+      flexWrap="wrap"
       justifyContent="flex-start"
       alignItems="center"
       margin={3}
-      gap={2}
     >
-      <Box width="40%" p={2}>
+      <Box width="40%" p={2} flex="2 0 300px">
         <TextField
           fullWidth
           id="input-search"
@@ -65,7 +65,12 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
           }}
         />
       </Box>
-      <Stack spacing={2} direction="row">
+      <Stack
+        spacing={2}
+        direction="row"
+        justifyContent="center"
+        flex="1 0 170px"
+      >
         <Button
           onClick={() => {
             getSearchResults(input);

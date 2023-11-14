@@ -15,7 +15,7 @@ const ResultCard = ({
       <Card
         sx={{
           height: "100%",
-          width: "auto",
+          minWidth: "270px",
           display: "flex",
           flexDirection: "column",
         }}
@@ -70,6 +70,9 @@ const ResultCard = ({
             lineHeight: "160%",
             letterSpacing: "0.15px",
             marginBottom: "20px",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
           }}
         >
           {trackName}

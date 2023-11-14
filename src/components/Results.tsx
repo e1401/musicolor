@@ -1,4 +1,4 @@
-import { Box, Grid, Stack } from "@mui/material";
+import { Grid } from "@mui/material";
 import ResultCard from "./ResultCard";
 import { ResultType, ResultList } from "../types/result";
 
@@ -12,7 +12,7 @@ const Results = ({ searchResults }: ResultsProps) => {
       container
       spacing={3}
       direction="row"
-      justifyContent="space-around"
+      justifyContent="flex-start"
       alignItems="center"
       alignContent="center"
       paddingInlineStart={5}
@@ -20,14 +20,10 @@ const Results = ({ searchResults }: ResultsProps) => {
     >
       {searchResults.map((result: ResultType, index) => {
         return (
-          <Grid item xs={8} md={3} key={index}>
+          <Grid item xs={12} md={3} key={index}>
             <ResultCard
               artistName={result.artistName}
-              trackName={
-                result.trackName?.length > 27
-                  ? `${result.trackName.substring(0, 26)}...`
-                  : result.trackName
-              }
+              trackName={result.trackName}
               artworkUrl100={result.artworkUrl100.replace("100x100", "500x500")}
               kind={result.kind}
               releaseDate={result.releaseDate.slice(0, 10)}
