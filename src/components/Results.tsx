@@ -20,7 +20,7 @@ const Results = ({ searchResults }: ResultsProps) => {
     >
       {searchResults.map((result: ResultType, index) => {
         return (
-          <Grid item xs={12} md={3} key={index}>
+          <Grid item xs={12} sm={12} md={4} lg={3} key={index}>
             <ResultCard
               artistName={result.artistName}
               trackName={result.trackName}
