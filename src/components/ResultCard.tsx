@@ -1,99 +1,107 @@
-import { Box, Chip, Card, CardMedia, Paper, Typography } from '@mui/material';
-import placeholder_img_artist_cover from '../images/placeholder_img_artist_cover.png';
-import { ResultType } from '../types/result';
+import { Box, Chip, Card, CardMedia, Paper, Typography } from "@mui/material";
+import placeholder_img_artist_cover from "../images/placeholder_img_artist_cover.png";
+import { ResultType } from "../types/result";
 
 const ResultCard = ({
-    artworkUrl100,
-    artistName,
-    trackName,
-    kind,
-    releaseDate,
-    primaryGenreName,
+  artworkUrl100,
+  artistName,
+  trackName,
+  kind,
+  releaseDate,
+  primaryGenreName,
 }: ResultType) => {
-    return (
-        <Paper elevation={3}>
-            <Card
-                sx={{
-                    width: '244px',
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                }}
-            >
-                <CardMedia
-                    sx={{ width: '100%', height: '60%' }}
-                    component='img'
-                    image={
-                        artworkUrl100
-                            ? artworkUrl100
-                            : placeholder_img_artist_cover
-                    }
-                    alt='Artist cover'
-                />
+  return (
+    <Paper elevation={3}>
+      <Card
+        sx={{
+          height: "100%",
+          minWidth: "270px",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <CardMedia
+          sx={{ width: "auto", height: "60%", aspectRatio: 1 / 1 }}
+          component="img"
+          image={artworkUrl100 ? artworkUrl100 : placeholder_img_artist_cover}
+          alt="Artist cover"
+        />
 
-                <Box
-                    sx={{
-                        px: 2,
-                        py: 0,
-                        height: '25%',
-                        display: 'flex',
-                        flexDirection: 'row',
-                        flexWrap: 'wrap',
-                        alignItems: 'flex-end',
-                        justifyContent: 'flex-start',
-                        alignContent: 'flex-start',
-                    }}
-                >
-                    <Typography
-                        gutterBottom
-                        paddingRight={2}
-                        sx={{
-                            color: 'primary.main',
-                            fontSize: '14px',
-                            fontWeight: 'medium',
-                        }}
-                    >
-                        {artistName}
-                    </Typography>
-                    <Typography gutterBottom> {releaseDate}</Typography>
+        <Box
+          sx={{
+            px: 2,
+            paddingTop: "16px",
+            paddingBottom: "0",
+            height: "25%",
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            alignItems: "flex-end",
+            justifyContent: "flex-start",
+            alignContent: "flex-start",
+          }}
+        >
+          <Typography
+            paddingRight={2}
+            sx={{
+              color: "primary.main",
+              fontSize: "14px",
+              fontWeight: "medium",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {artistName}
+          </Typography>
+          <Typography
+            sx={{
+              color: "primary.main",
+              fontSize: "14px",
+              fontWeight: "medium",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {releaseDate}
+          </Typography>
+        </Box>
+        <Typography
+          variant="h6"
+          paddingInlineStart="16px"
+          color="text.primary"
+          sx={{
+            fontWeight: 500,
+            lineHeight: "160%",
+            letterSpacing: "0.15px",
+            marginBottom: "20px",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+          }}
+        >
+          {trackName}
+        </Typography>
 
-                    <Typography
-                        gutterBottom
-                        variant='h6'
-                        color='text.primary'
-                        sx={{
-                            fontSize: '20px',
-                            fontWeight: 500,
-                            lineHeight: '160%',
-                            letterSpacing: '0.15px',
-                        }}
-                    >
-                        {trackName}
-                    </Typography>
-                </Box>
-
-                <Box
-                    gap={1}
-                    sx={{
-                        p: 2,
-                        height: '25%',
-                        display: 'flex',
-                        flexDirection: 'row',
-                        flexWrap: 'wrap',
-                        justifyContent: 'flex-start',
-                        alignItems: 'flex-end',
-                    }}
-                >
-                    <Chip label={kind} size='medium' />
-                    <Chip
-                        label={primaryGenreName}
-                        size='medium'
-                        variant='filled'
-                    />
-                </Box>
-            </Card>
-        </Paper>
-    );
+        <Box
+          gap={1}
+          sx={{
+            p: 2,
+            height: "25%",
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "flex-start",
+            alignItems: "flex-end",
+          }}
+        >
+          <Chip label={kind} size="medium" />
+          <Chip label={primaryGenreName} size="medium" variant="filled" />
+        </Box>
+      </Card>
+    </Paper>
+  );
 };
 
 export default ResultCard;
