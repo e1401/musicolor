@@ -1,10 +1,11 @@
-export type ResultType = {
-    artistName: string
-    trackName: string
-    artworkUrl100: string
-    kind: string
-    releaseDate: string
-    primaryGenreName: string
-  }
+export type Result = {
+  collectionId: number;
+  artistName: string;
+  trackName: string;
+  artworkUrl100: string;
+  kind: string;
+  releaseDate: string;
+  primaryGenreName: string;
+};
 
-  export type ResultList = ResultType[];
+export type ResultList = Result[];
