@@ -121,7 +121,6 @@ const ResultCard = ({
             flexDirection: "row",
             justifyContent: "flex-start",
           }}
-          // onClick={() => navigate("/details/:id")} // !
           onClick={() => navigate(`/results/${collectionId}`)}
         >
           View Details

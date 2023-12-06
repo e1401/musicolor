@@ -4,7 +4,7 @@ import { Item } from "../types/item";
 
 const ItemDetails = () => {
   const { id } = useParams();
-  const [item, setItem] = useState({} as Item);
+  const [item, setItem] = useState<Item | null>(null);
 
   const url = `https://itunes.apple.com/lookup?id=${id}`;
 
@@ -19,7 +19,7 @@ const ItemDetails = () => {
 
   return (
     <h2>
-      ID is: {id} Hello, {item.artistName}!
+      ID is: {id} Hello and welcome, {item && item.artistName}!
     </h2>
   );
 };
