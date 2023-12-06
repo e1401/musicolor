@@ -1,15 +1,27 @@
-import { Box, Chip, Card, CardMedia, Paper, Typography } from "@mui/material";
+import {
+  Box,
+  Chip,
+  Card,
+  CardMedia,
+  Paper,
+  Typography,
+  Button,
+} from "@mui/material";
 import placeholder_img_artist_cover from "../images/placeholder_img_artist_cover.png";
-import { ResultType } from "../types/result";
+import { Result } from "../types/result";
+import { useNavigate } from "react-router-dom";
 
 const ResultCard = ({
+  collectionId,
   artworkUrl100,
   artistName,
   trackName,
   kind,
   releaseDate,
   primaryGenreName,
-}: ResultType) => {
+}: Result) => {
+  const navigate = useNavigate();
+
   return (
     <Paper elevation={3}>
       <Card
@@ -99,6 +111,20 @@ const ResultCard = ({
           <Chip label={kind} size="medium" />
           <Chip label={primaryGenreName} size="medium" variant="filled" />
         </Box>
+        <Button
+          variant="contained"
+          color="primary"
+          size="medium"
+          aria-label="get detail view"
+          sx={{
+            margin: " 10px",
+            flexDirection: "row",
+            justifyContent: "flex-start",
+          }}
+          onClick={() => navigate(`/results/${collectionId}`)}
+        >
+          View Details
+        </Button>
       </Card>
     </Paper>
   );
