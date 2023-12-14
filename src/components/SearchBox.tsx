@@ -47,7 +47,8 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
       flexWrap="wrap"
       justifyContent="flex-start"
       alignItems="center"
-      margin={3}
+      mt={5}
+      marginInlineStart={10}
     >
       <Box width="40%" p={2} flex="2 0 400px">
         <TextField

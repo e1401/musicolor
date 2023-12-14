@@ -7,9 +7,9 @@ import {
   Typography,
   Button,
 } from "@mui/material";
-import placeholder_img_artist_cover from "../images/placeholder_img_artist_cover.png";
 import { Result } from "../types/result";
 import { useNavigate } from "react-router-dom";
+import { showArtwork } from "../utils/showArtwork";
 
 const ResultCard = ({
   collectionId,
@@ -35,7 +35,7 @@ const ResultCard = ({
         <CardMedia
           sx={{ width: "auto", height: "60%", aspectRatio: 1 / 1 }}
           component="img"
-          image={artworkUrl100 ? artworkUrl100 : placeholder_img_artist_cover}
+          image={showArtwork(artworkUrl100)}
           alt="Artist cover"
         />
 
@@ -66,6 +66,7 @@ const ResultCard = ({
           >
             {artistName}
           </Typography>
+
           <Typography
             sx={{
               color: "primary.main",
@@ -120,6 +121,8 @@ const ResultCard = ({
             margin: " 10px",
             flexDirection: "row",
             justifyContent: "flex-start",
+            width: "135px",
+            wrap: "no-wrap",
           }}
           onClick={() => navigate(`/results/${collectionId}`)}
         >
