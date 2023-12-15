@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import ItemDetails from "./components/ItemDetails";
 import { Typography } from "@mui/material";
 import Header from "./components/Header";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -11,10 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/results/:id" element={<ItemDetails />} />
-        <Route
-          path="/*"
-          element={<Typography variant="h2">Not Found</Typography>}
-        />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
     </div>
   );
