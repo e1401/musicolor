@@ -19,6 +19,7 @@ const Results = ({ searchResults }: ResultsProps) => {
       paddingInlineEnd={5}
     >
       {searchResults.map((result: Result, index) => {
+        console.log(result);
         return (
           <Grid item xs={12} sm={12} md={4} lg={3} key={index}>
             <ResultCard
@@ -28,7 +29,6 @@ const Results = ({ searchResults }: ResultsProps) => {
               trackName={result.trackName}
               artworkUrl100={result.artworkUrl100}
               collectionType={result.collectionType}
-              kind={result.kind}
               releaseDate={result.releaseDate.slice(0, 10)}
               primaryGenreName={result.primaryGenreName}
             />

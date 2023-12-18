@@ -33,7 +33,7 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
       const {
         data: { results },
       } = await axios.get(
-        API_URL + `?term=${searchValue}&media=music&limit=10`
+        API_URL + `?term=${searchValue}&media=music&entity=album&limit=10`
       );
       setSearchResults(results);
     } catch (error) {

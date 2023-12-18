@@ -5,7 +5,6 @@ export type Result = {
   trackName: string;
   artworkUrl100: string;
   collectionType: string;
-  kind: string;
   releaseDate: string;
   primaryGenreName: string;
 };

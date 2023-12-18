@@ -16,7 +16,7 @@ const ResultCard = ({
   artworkUrl100,
   artistName,
   trackName,
-  kind,
+  collectionType,
   releaseDate,
   primaryGenreName,
 }: Result) => {
@@ -109,25 +109,27 @@ const ResultCard = ({
             alignItems: "flex-end",
           }}
         >
-          <Chip label={kind} size="medium" />
+          <Chip label={collectionType} size="medium" />
           <Chip label={primaryGenreName} size="medium" variant="filled" />
         </Box>
-        <Button
-          variant="contained"
-          color="primary"
-          size="medium"
-          aria-label="get detail view"
-          sx={{
-            margin: " 10px",
-            flexDirection: "row",
-            justifyContent: "flex-start",
-            width: "135px",
-            wrap: "no-wrap",
-          }}
-          onClick={() => navigate(`/results/${collectionId}`)}
-        >
-          View Details
-        </Button>
+        <Box>
+          <Button
+            variant="contained"
+            color="primary"
+            size="medium"
+            aria-label="get detail view"
+            sx={{
+              margin: " 10px",
+              flexDirection: "row",
+              justifyContent: "flex-start",
+              maxWidth: "50%",
+              wrap: "no-wrap",
+            }}
+            onClick={() => navigate(`/results/${collectionId}`)}
+          >
+            View Details
+          </Button>
+        </Box>
       </Card>
     </Paper>
   );

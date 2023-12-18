@@ -22,23 +22,15 @@ const ItemDetails = () => {
     };
 
     fetchItems();
-  }, [id]);
+  }, [id, url]);
 
-  const {
-    data: artworkColors,
-    loading,
-    error,
-  } = usePalette(showArtwork(item ? item.artworkUrl100 : ""));
-
-  useEffect(() => {
-    if (loading) console.log("still loading...");
-    else if (error) console.error(error);
-    else console.log("got colors!", { artworkColors });
-  }, [loading]);
+  const { data: artworkColors } = usePalette(
+    showArtwork(item ? item.artworkUrl100 : "")
+  );
 
   return (
     <Stack>
-      <Button onClick={() => navigate("/")} aria-label="Logo"></Button>
+      <Button onClick={() => navigate("/")}></Button>
 
       {item ? (
         <>
@@ -67,13 +59,11 @@ const ItemDetails = () => {
                   size="small"
                   color="primary"
                 />
+
                 <Typography variant="body2" mt={2}>
-                  {item.kind}
-                </Typography>
-                <Typography variant="body2">
                   Genre: {item.primaryGenreName}
                 </Typography>
-                <Typography variant="body2" mt={2}>
+                <Typography variant="body2" mt={1}>
                   Release date:
                   {format(new Date(item.releaseDate), "MM/dd/yyyy")}
                 </Typography>
@@ -121,22 +111,18 @@ const ItemDetails = () => {
           </Stack>
         </>
       ) : null}
-      <Button
-        aria-labelledby="back-to-search"
-        size="small"
-        color="primary"
-        variant="text"
-        sx={{
-          marginX: 10,
-          maxWidth: "160px",
-          marginY: 5,
-          justifyContent: "flex-start",
-          alignItems: "flex-start",
-        }}
-        onClick={() => navigate("/")}
-      >
-        Back to search
-      </Button>
+      <Box display="flex" alignItems="flex-start" justifyContent="flex-start">
+        <Button
+          aria-labelledby="back-to-search"
+          size="small"
+          color="primary"
+          variant="text"
+          sx={{ marginX: 9.8, marginY: 4 }}
+          onClick={() => navigate("/")}
+        >
+          Back to search
+        </Button>
+      </Box>
     </Stack>
   );
 };

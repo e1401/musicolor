@@ -8,7 +8,6 @@ export type Item = {
   primaryGenreName: string;
   collectionName: string;
   collectionType: string;
-  kind: string;
 };
 
 export type ItemList = Item[];

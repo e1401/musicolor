@@ -1,4 +1,4 @@
-import { Box, Container, Typography, Button } from "@mui/material";
+import { Container, Typography, Button } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { useNavigate } from "react-router-dom";
 import vecteezy_pageUnderConstruction from "../images/vecteezy_pageUnderConstruction.jpg";
@@ -7,7 +7,7 @@ const NotFound = () => {
   const navigate = useNavigate();
 
   return (
-    <Box
+    <Grid
       sx={{
         display: "flex",
         justifyContent: "center",
@@ -47,7 +47,7 @@ const NotFound = () => {
           </Grid>
         </Grid>
       </Container>
-    </Box>
+    </Grid>
   );
 };
 

@@ -1,20 +1,25 @@
-import { Link } from "@mui/material";
+import { AppBar, Button, Toolbar } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import Logo from "../images/Logo.png";
-
+import logo_img from "../images/logo_img.svg";
 const Header = () => {
   const navigate = useNavigate();
   return (
-    <Link
-      component="button"
-      underline="none"
-      flexDirection="column"
-      justifyContent="flex-start"
-      sx={{ width: "100%", height: "100%", marginX: 10, marginY: 8 }}
-      onClick={() => navigate("/")}
+    <AppBar
+      position="static"
+      sx={{ boxShadow: "none", backgroundColor: "white" }}
     >
-      <img src={Logo} alt="Musicolor logo" />
-    </Link>
+      <Toolbar>
+        <Button
+          size="large"
+          aria-label="logo"
+          color="inherit"
+          sx={{ marginX: 5.5, marginY: 4 }}
+          onClick={() => navigate("/")}
+        >
+          <img src={logo_img} alt="Musicolor logo" />
+        </Button>
+      </Toolbar>
+    </AppBar>
   );
 };
 
