@@ -112,19 +112,18 @@ const ResultCard = ({
           <Chip label={collectionType} size="medium" />
           <Chip label={primaryGenreName} size="medium" variant="filled" />
         </Box>
-        <Box>
+        <Box
+          flexDirection="row"
+          justifyContent="flex-start"
+          flexWrap="nowrap"
+          maxWidth="50%"
+          margin=" 10px"
+        >
           <Button
             variant="contained"
             color="primary"
             size="medium"
             aria-label="get detail view"
-            sx={{
-              margin: " 10px",
-              flexDirection: "row",
-              justifyContent: "flex-start",
-              maxWidth: "50%",
-              wrap: "no-wrap",
-            }}
             onClick={() => navigate(`/results/${collectionId}`)}
           >
             View Details

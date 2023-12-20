@@ -19,7 +19,6 @@ const Results = ({ searchResults }: ResultsProps) => {
       paddingInlineEnd={5}
     >
       {searchResults.map((result: Result, index) => {
-        console.log(result);
         return (
           <Grid item xs={12} sm={12} md={4} lg={3} key={index}>
             <ResultCard

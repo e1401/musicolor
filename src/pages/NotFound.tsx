@@ -8,13 +8,11 @@ const NotFound = () => {
 
   return (
     <Grid
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight: "100vh",
-        marginTop: -20,
-      }}
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="100vh"
+      marginTop="-20"
     >
       <Container maxWidth="md">
         <Grid container spacing={2}>

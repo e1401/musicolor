@@ -117,7 +117,7 @@ const ItemDetails = () => {
           size="small"
           color="primary"
           variant="text"
-          sx={{ marginX: 9.8, marginY: 4 }}
+          sx={{ marginX: 10, marginY: 4 }}
           onClick={() => navigate("/")}
         >
           Back to search
