@@ -1,9 +1,10 @@
 export type Result = {
   collectionId: number;
+  collectionName: string;
   artistName: string;
   trackName: string;
   artworkUrl100: string;
-  kind: string;
+  collectionType: string;
   releaseDate: string;
   primaryGenreName: string;
 };

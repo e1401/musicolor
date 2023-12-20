@@ -7,16 +7,16 @@ import {
   Typography,
   Button,
 } from "@mui/material";
-import placeholder_img_artist_cover from "../images/placeholder_img_artist_cover.png";
 import { Result } from "../types/result";
 import { useNavigate } from "react-router-dom";
+import { showArtwork } from "../utils/showArtwork";
 
 const ResultCard = ({
   collectionId,
   artworkUrl100,
   artistName,
   trackName,
-  kind,
+  collectionType,
   releaseDate,
   primaryGenreName,
 }: Result) => {
@@ -35,7 +35,7 @@ const ResultCard = ({
         <CardMedia
           sx={{ width: "auto", height: "60%", aspectRatio: 1 / 1 }}
           component="img"
-          image={artworkUrl100 ? artworkUrl100 : placeholder_img_artist_cover}
+          image={showArtwork(artworkUrl100)}
           alt="Artist cover"
         />
 
@@ -66,6 +66,7 @@ const ResultCard = ({
           >
             {artistName}
           </Typography>
+
           <Typography
             sx={{
               color: "primary.main",
@@ -108,23 +109,26 @@ const ResultCard = ({
             alignItems: "flex-end",
           }}
         >
-          <Chip label={kind} size="medium" />
+          <Chip label={collectionType} size="medium" />
           <Chip label={primaryGenreName} size="medium" variant="filled" />
         </Box>
-        <Button
-          variant="contained"
-          color="primary"
-          size="medium"
-          aria-label="get detail view"
-          sx={{
-            margin: " 10px",
-            flexDirection: "row",
-            justifyContent: "flex-start",
-          }}
-          onClick={() => navigate(`/results/${collectionId}`)}
+        <Box
+          flexDirection="row"
+          justifyContent="flex-start"
+          flexWrap="nowrap"
+          maxWidth="50%"
+          margin=" 10px"
         >
-          View Details
-        </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            size="medium"
+            aria-label="get detail view"
+            onClick={() => navigate(`/results/${collectionId}`)}
+          >
+            View Details
+          </Button>
+        </Box>
       </Card>
     </Paper>
   );
