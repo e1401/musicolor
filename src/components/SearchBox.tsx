@@ -12,7 +12,6 @@ import { ChangeEvent, useState, KeyboardEvent } from "react";
 
 import axios from "axios";
 import { API_URL } from "../config/API_URL";
-import Results from "./Results";
 
 interface SearchBoxProps {
   setSearchResults: React.Dispatch<React.SetStateAction<never[]>>;
