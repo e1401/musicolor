@@ -22,7 +22,7 @@ const ItemDetails = () => {
     };
 
     fetchItems();
-  }, [id, url]);
+  }, [id]);
 
   const { data: artworkColors } = usePalette(
     showArtwork(item ? item.artworkUrl100 : "")
@@ -41,6 +41,7 @@ const ItemDetails = () => {
           <Stack
             direction="row"
             flexWrap="wrap"
+            justifyContent="flex-start"
             width="100%"
             gap={4}
             mt={4}
