@@ -9,6 +9,7 @@ import {
 
 import SearchIcon from "@mui/icons-material/Search";
 import { ChangeEvent, useState, KeyboardEvent } from "react";
+
 import axios from "axios";
 import { API_URL } from "../config/API_URL";
 
@@ -25,6 +26,7 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
   };
 
   const handleInputSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     setInput(e.target.value);
   };
 
@@ -35,9 +37,15 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
       } = await axios.get(
         API_URL + `?term=${searchValue}&media=music&entity=album&limit=10`
       );
+
+      if (results.length === 0) {
+        setHelperText("No results match criteria.");
+      } else {
+        setHelperText("");
+      }
       setSearchResults(results);
     } catch (error) {
-      setHelperText("No results match criteria.");
+      setHelperText("Error occurred while fetching results.");
     }
   };
 
@@ -48,9 +56,9 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
       justifyContent="flex-start"
       alignItems="center"
       mt={5}
-      marginInlineStart={10}
+      marginInlineStart={5}
     >
-      <Box width="40%" p={2} flex="2 0 400px">
+      <Box width="40%" p={5} flex="2 0 400px">
         <TextField
           aria-describedby="input-search"
           fullWidth
@@ -79,7 +87,7 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
           id="input-search"
           sx={{ color: "warning.main", fontSize: "14px", position: "absolute" }}
         >
-          {helperText || " "}
+          {helperText}
         </FormHelperText>
       </Box>
       <Stack

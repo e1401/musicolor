@@ -41,6 +41,7 @@ const ItemDetails = () => {
           <Stack
             direction="row"
             flexWrap="wrap"
+            justifyContent="flex-start"
             width="100%"
             gap={4}
             mt={4}
