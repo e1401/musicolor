@@ -22,7 +22,7 @@ const ItemDetails = () => {
     };
 
     fetchItems();
-  }, [id]);
+  }, [id, url]);
 
   const { data: artworkColors } = usePalette(
     showArtwork(item ? item.artworkUrl100 : "")
