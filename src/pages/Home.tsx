@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, Stack } from "@mui/material";
 import SearchBox from "../components/SearchBox";
 import Results from "../components/Results";
 import { useState } from "react";
@@ -7,10 +7,16 @@ const Home = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   return (
-    <Grid container spacing={2} flexDirection={"column"}>
+    <Stack
+      flexDirection="row"
+      flexWrap="wrap"
+      mx={{ xs: 2, md: 4 }}
+      my={4}
+      maxWidth="100%"
+    >
       <SearchBox setSearchResults={setSearchResults} />
       <Results searchResults={searchResults} />
-    </Grid>
+    </Stack>
   );
 };
 

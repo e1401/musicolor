@@ -1,37 +1,29 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { Item } from '../types/item';
-import {
-    Box,
-    Button,
-    Chip,
-    Grid,
-    Stack,
-    Typography,
-    Divider,
-} from '@mui/material';
-import { usePalette } from 'react-palette';
-import { showArtwork } from '../utils/showArtwork';
-import { format } from 'date-fns';
-import { DETAILS_URL } from '../config/API_URL';
+import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Item } from "../types/item";
+import { Box, Button, Chip, Stack, Typography, Divider } from "@mui/material";
+import { usePalette } from "react-palette";
+import { showArtwork } from "../utils/showArtwork";
+import { format } from "date-fns";
+import { DETAILS_URL } from "../config/API_URL";
 
 const ItemDetails = () => {
-    const { id } = useParams();
-    const [item, setItem] = useState<Item | null>(null);
+  const { id } = useParams();
+  const [item, setItem] = useState<Item | null>(null);
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const url = `${DETAILS_URL}?id=${id}`;
+  const url = `${DETAILS_URL}?id=${id}`;
 
-    useEffect(() => {
-        const fetchItems = async () => {
-            const response = await fetch(url);
-            const data = await response.json();
-            setItem(data.results[0]);
-        };
+  useEffect(() => {
+    const fetchItems = async () => {
+      const response = await fetch(url);
+      const data = await response.json();
+      setItem(data.results[0]);
+    };
 
-        fetchItems();
-    }, [id, url]);
+    fetchItems();
+  }, [id, url]);
 
     const { data: artworkColors } = usePalette(
         showArtwork(item ? item.artworkUrl100 : '')
@@ -49,55 +41,52 @@ const ItemDetails = () => {
         document.body.removeChild(link);
     };
 
-    return (
-        <Box
-            display='flex'
-            flexDirection='column'
-            gap={8}
-            mx={{ xs: 2, md: 4 }}
-            my={4}
-        >
-            <Stack flexDirection={{ xs: 'column', md: 'row' }} gap={2}>
+  return (
+    <Box
+      display="flex"
+      flexDirection="column"
+      gap={8}
+      mx={{ xs: 2, md: 4 }}
+      my={4}
+    >
+      <Stack flexDirection={{ xs: "column", md: "row" }} gap={2}>
+        {item ? (
+          <Box>
+            {item ? (
+              <Typography variant="h6" mb={3}>
+                {item.artistName} - {item.collectionName}
+              </Typography>
+            ) : null}
+            <Stack gap={2} direction={{ xs: "column", md: "row" }}>
+              <Box display="flex" flexDirection={{ xs: "column", md: "row" }}>
+                <img
+                  src={showArtwork(item.artworkUrl100)}
+                  alt={item.artistName}
+                  style={{
+                    maxWidth: "500px",
+                    height: "auto",
+                    flex: "1",
+                  }}
+                />
+              </Box>
+              <Box>
                 {item ? (
-                    <Box>
-                        {item ? (
-                            <Typography variant='h6' mb={3}>
-                                {item.artistName} - {item.collectionName}
-                            </Typography>
-                        ) : null}
-                        <Stack gap={2} direction={{ xs: 'column', md: 'row' }}>
-                            <Box
-                                display='flex'
-                                flexDirection={{ xs: 'column', md: 'row' }}
-                            >
-                                <img
-                                    src={showArtwork(item.artworkUrl100)}
-                                    alt={item.artistName}
-                                    style={{
-                                        maxWidth: '500px',
-                                        height: 'auto',
-                                        flex: '1',
-                                    }}
-                                />
-                            </Box>
-                            <Box>
-                                {item ? (
-                                    <Box
-                                        display='flex'
-                                        flexDirection='column'
-                                        maxWidth='500px'
-                                        height='auto'
-                                        flex='1'
-                                        gap={2}
-                                    >
-                                        <Chip
-                                            label={item.collectionType}
-                                            size='small'
-                                            color='primary'
-                                            sx={{
-                                                width: 'fit-content',
-                                            }}
-                                        />
+                  <Box
+                    display="flex"
+                    flexDirection="column"
+                    maxWidth="500px"
+                    height="auto"
+                    flex="1"
+                    gap={2}
+                  >
+                    <Chip
+                      label={item.collectionType}
+                      size="small"
+                      color="primary"
+                      sx={{
+                        width: "fit-content",
+                      }}
+                    />
 
                                         <Typography variant='body2'>
                                             Genre: {item.primaryGenreName}

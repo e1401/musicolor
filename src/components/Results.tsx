@@ -8,18 +8,10 @@ type ResultsProps = {
 
 const Results = ({ searchResults }: ResultsProps) => {
   return (
-    <Grid
-      container
-      spacing={2}
-      direction="row"
-      justifyContent="flex-start"
-      alignContent="center"
-      paddingInlineStart={5}
-      paddingTop={5}
-    >
+    <Grid container alignContent="center" paddingTop={5}>
       {searchResults.map((result: Result, index) => {
         return (
-          <Grid item xs={12} sm={8} md={4} lg={3} key={index}>
+          <Grid item xs={12} sm={12} md={8} lg={3} gap={2} key={index}>
             <ResultCard
               collectionId={result.collectionId}
               collectionName={result.collectionName}
