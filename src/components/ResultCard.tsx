@@ -26,8 +26,7 @@ const ResultCard = ({
     <Paper elevation={3}>
       <Card
         sx={{
-          height: "100%",
-          minWidth: "270px",
+          height: "auto",
           display: "flex",
           flexDirection: "column",
         }}
