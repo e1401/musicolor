@@ -9,7 +9,9 @@ const user = userEvent.setup();
 describe('SearchBox', () => {
     beforeEach(async () => {
         await act(async () => {
-            render(<SearchBox />, { wrapper: BrowserRouter });
+            render(<SearchBox setSearchResults={() => {}} />, {
+                wrapper: BrowserRouter,
+            });
         });
     });
 
