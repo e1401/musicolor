@@ -37,6 +37,18 @@ const ItemDetails = () => {
         showArtwork(item ? item.artworkUrl100 : '')
     );
 
+    const downloadJson = () => {
+        const json = JSON.stringify(artworkColors);
+        const blob = new Blob([json], { type: 'application/json' });
+        const href = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = href;
+        link.download = `${item?.artistName} - ${item?.collectionName} - color palette.json`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
     return (
         <Box
             display='flex'
@@ -91,7 +103,7 @@ const ItemDetails = () => {
                                             Genre: {item.primaryGenreName}
                                         </Typography>
                                         <Typography variant='body2'>
-                                            Release date:
+                                            Release date:{' '}
                                             {format(
                                                 new Date(item.releaseDate),
                                                 'MM/dd/yyyy'
@@ -149,13 +161,13 @@ const ItemDetails = () => {
                                                 aria-labelledby='download'
                                                 size='small'
                                                 variant='contained'
-                                                disabled
                                                 sx={{
                                                     width: {
                                                         xs: '40%',
                                                         md: 'fit-content',
                                                     },
                                                 }}
+                                                onClick={() => downloadJson()}
                                             >
                                                 download
                                             </Button>
