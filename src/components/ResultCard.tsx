@@ -46,7 +46,7 @@ const ResultCard = ({
             height: "25%",
             display: "flex",
             flexDirection: "row",
-            flexWrap: "wrap",
+            flexWrap: "nowrap",
             alignItems: "flex-end",
             justifyContent: "flex-start",
             alignContent: "flex-start",
