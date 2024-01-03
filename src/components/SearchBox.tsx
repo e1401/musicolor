@@ -50,8 +50,9 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
       mx={{ xs: 2, md: 4 }}
       my={4}
       gap={4}
+      width="100%"
     >
-      <Box>
+      <Box flexGrow={3}>
         <TextField
           aria-describedby="input-search"
           fullWidth

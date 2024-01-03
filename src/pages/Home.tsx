@@ -8,11 +8,11 @@ const Home = () => {
 
   return (
     <Stack
+      display="flex"
       flexDirection="row"
       flexWrap="wrap"
       mx={{ xs: 2, md: 4 }}
       my={4}
-      maxWidth="100%"
     >
       <SearchBox setSearchResults={setSearchResults} />
       <Results searchResults={searchResults} />
