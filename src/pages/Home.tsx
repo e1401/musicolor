@@ -1,4 +1,4 @@
-import { Grid, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import SearchBox from "../components/SearchBox";
 import Results from "../components/Results";
 import { useState } from "react";
