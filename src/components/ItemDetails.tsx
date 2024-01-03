@@ -6,15 +6,33 @@ import { usePalette } from "react-palette";
 import { showArtwork } from "../utils/showArtwork";
 import { format } from "date-fns";
 import { DETAILS_URL } from "../config/API_URL";
+import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Item } from "../types/item";
+import { Box, Button, Chip, Stack, Typography, Divider } from "@mui/material";
+import { usePalette } from "react-palette";
+import { showArtwork } from "../utils/showArtwork";
+import { format } from "date-fns";
+import { DETAILS_URL } from "../config/API_URL";
 
 const ItemDetails = () => {
   const { id } = useParams();
   const [item, setItem] = useState<Item | null>(null);
+  const { id } = useParams();
+  const [item, setItem] = useState<Item | null>(null);
 
+  const navigate = useNavigate();
   const navigate = useNavigate();
 
   const url = `${DETAILS_URL}?id=${id}`;
+  const url = `${DETAILS_URL}?id=${id}`;
 
+  useEffect(() => {
+    const fetchItems = async () => {
+      const response = await fetch(url);
+      const data = await response.json();
+      setItem(data.results[0]);
+    };
   useEffect(() => {
     const fetchItems = async () => {
       const response = await fetch(url);
@@ -24,10 +42,12 @@ const ItemDetails = () => {
 
     fetchItems();
   }, [id, url]);
+    fetchItems();
+  }, [id, url]);
 
-    const { data: artworkColors } = usePalette(
-        showArtwork(item ? item.artworkUrl100 : '')
-    );
+  const { data: artworkColors } = usePalette(
+    showArtwork(item ? item.artworkUrl100 : "")
+  );
 
     const downloadJson = () => {
         const json = JSON.stringify(artworkColors);
