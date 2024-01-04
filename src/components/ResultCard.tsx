@@ -1,137 +1,109 @@
 import {
-  Box,
-  Chip,
-  Card,
-  CardMedia,
-  Paper,
-  Typography,
-  Button,
-} from "@mui/material";
-import { Result } from "../types/result";
-import { useNavigate } from "react-router-dom";
-import { showArtwork } from "../utils/showArtwork";
+    Box,
+    Stack,
+    Chip,
+    Card,
+    CardMedia,
+    Paper,
+    Typography,
+    Button,
+} from '@mui/material';
+import { Result } from '../types/result';
+import { useNavigate } from 'react-router-dom';
+import { showArtwork } from '../utils/showArtwork';
+import { format } from 'date-fns';
 
 const ResultCard = ({
-  collectionId,
-  artworkUrl100,
-  artistName,
-  trackName,
-  collectionType,
-  releaseDate,
-  primaryGenreName,
+    collectionId,
+    collectionName,
+    artworkUrl100,
+    artistName,
+    collectionType,
+    releaseDate,
+    primaryGenreName,
 }: Result) => {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  return (
-    <Paper elevation={3}>
-      <Card
-        sx={{
-          height: "100%",
-          minWidth: "270px",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <CardMedia
-          sx={{ width: "auto", height: "60%", aspectRatio: 1 / 1 }}
-          component="img"
-          image={showArtwork(artworkUrl100)}
-          alt="Artist cover"
-        />
+    console.log('collection type', collectionType);
 
-        <Box
-          sx={{
-            px: 2,
-            paddingTop: "16px",
-            paddingBottom: "0",
-            height: "25%",
-            display: "flex",
-            flexDirection: "row",
-            flexWrap: "wrap",
-            alignItems: "flex-end",
-            justifyContent: "flex-start",
-            alignContent: "flex-start",
-          }}
-        >
-          <Typography
-            paddingRight={2}
-            sx={{
-              color: "primary.main",
-              fontSize: "14px",
-              fontWeight: "medium",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {artistName}
-          </Typography>
+    return (
+        <Paper elevation={3}>
+            <Card
+                sx={{
+                    height: '100%',
+                    minWidth: '270px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                }}
+            >
+                <CardMedia
+                    sx={{ width: 'auto', height: '60%', aspectRatio: 1 / 1 }}
+                    component='img'
+                    image={showArtwork(artworkUrl100)}
+                    alt='Album cover'
+                />
+                <Stack gap={2} p={2}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                        <Typography
+                            variant='h5'
+                            fontWeight={900}
+                            sx={{
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                whiteSpace: 'nowrap',
+                            }}
+                        >
+                            {artistName}
+                        </Typography>
+                        <Typography
+                            variant='h6'
+                            fontWeight={500}
+                            sx={{
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                whiteSpace: 'nowrap',
+                            }}
+                        >
+                            {collectionName}
+                        </Typography>
+                    </Box>
 
-          <Typography
-            sx={{
-              color: "primary.main",
-              fontSize: "14px",
-              fontWeight: "medium",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {releaseDate}
-          </Typography>
-        </Box>
-        <Typography
-          variant="h6"
-          paddingInlineStart="16px"
-          color="text.primary"
-          sx={{
-            fontWeight: 500,
-            lineHeight: "160%",
-            letterSpacing: "0.15px",
-            marginBottom: "20px",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            whiteSpace: "nowrap",
-          }}
-        >
-          {trackName}
-        </Typography>
+                    <Typography
+                        sx={{
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            whiteSpace: 'nowrap',
+                        }}
+                    >
+                        Release date:{' '}
+                        {format(new Date(releaseDate), 'MM/dd/yyyy')}
+                    </Typography>
 
-        <Box
-          gap={1}
-          sx={{
-            p: 2,
-            height: "25%",
-            display: "flex",
-            flexDirection: "row",
-            flexWrap: "wrap",
-            justifyContent: "flex-start",
-            alignItems: "flex-end",
-          }}
-        >
-          <Chip label={collectionType} size="medium" />
-          <Chip label={primaryGenreName} size="medium" variant="filled" />
-        </Box>
-        <Box
-          flexDirection="row"
-          justifyContent="flex-start"
-          flexWrap="nowrap"
-          maxWidth="50%"
-          margin=" 10px"
-        >
-          <Button
-            variant="contained"
-            color="primary"
-            size="medium"
-            aria-label="get detail view"
-            onClick={() => navigate(`/results/${collectionId}`)}
-          >
-            View Details
-          </Button>
-        </Box>
-      </Card>
-    </Paper>
-  );
+                    <Box display='flex' flexDirection='row' gap={1}>
+                        <Chip label={collectionType} size='medium' />
+                        <Chip
+                            label={primaryGenreName}
+                            size='medium'
+                            variant='filled'
+                        />
+                    </Box>
+
+                    {/* An empty box is a good way to add space between elements without adding margin or padding on siblings */}
+                    <Box />
+
+                    <Button
+                        variant='contained'
+                        color='primary'
+                        size='medium'
+                        aria-label='get colors'
+                        onClick={() => navigate(`/results/${collectionId}`)}
+                    >
+                        get colors
+                    </Button>
+                </Stack>
+            </Card>
+        </Paper>
+    );
 };
 
 export default ResultCard;
