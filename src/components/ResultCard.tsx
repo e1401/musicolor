@@ -24,8 +24,6 @@ const ResultCard = ({
 }: Result) => {
     const navigate = useNavigate();
 
-    console.log('collection type', collectionType);
-
     return (
         <Paper elevation={3}>
             <Card
