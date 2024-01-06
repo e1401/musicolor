@@ -7,6 +7,7 @@ import {
     Paper,
     Typography,
     Button,
+    CardActions,
 } from '@mui/material';
 import { Result } from '../types/result';
 import { useNavigate } from 'react-router-dom';
@@ -35,11 +36,18 @@ const ResultCard = ({
                 }}
             >
                 <CardMedia
-                    sx={{ width: 'auto', height: '60%', aspectRatio: 1 / 1 }}
+                    sx={{
+                        width: 'auto',
+                        height: '60%',
+                        aspectRatio: 1 / 1,
+                        cursor: 'pointer',
+                    }}
                     component='img'
                     image={showArtwork(artworkUrl100)}
                     alt='Album cover'
+                    onClick={() => navigate(`/results/${collectionId}`)}
                 />
+
                 <Stack gap={2} p={2}>
                     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                         <Typography
@@ -88,16 +96,17 @@ const ResultCard = ({
 
                     {/* An empty box is a good way to add space between elements without adding margin or padding on siblings */}
                     <Box />
-
-                    <Button
-                        variant='contained'
-                        color='primary'
-                        size='medium'
-                        aria-label='get colors'
-                        onClick={() => navigate(`/results/${collectionId}`)}
-                    >
-                        get colors
-                    </Button>
+                    <CardActions>
+                        <Button
+                            variant='contained'
+                            color='primary'
+                            size='medium'
+                            aria-label='get colors'
+                            onClick={() => navigate(`/results/${collectionId}`)}
+                        >
+                            get colors
+                        </Button>
+                    </CardActions>
                 </Stack>
             </Card>
         </Paper>
