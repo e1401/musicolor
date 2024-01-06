@@ -7,11 +7,10 @@ import {
     Paper,
     Typography,
     Button,
-    CardActionArea,
     CardActions,
 } from '@mui/material';
 import { Result } from '../types/result';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { showArtwork } from '../utils/showArtwork';
 import { format } from 'date-fns';
 
