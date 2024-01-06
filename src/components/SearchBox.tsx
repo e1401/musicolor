@@ -24,8 +24,6 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
     const [input, setInput] = useState<string>(keyword || '');
     const [helperText, setHelperText] = useState('');
 
-    console.log('keyword is', keyword);
-
     const handleClear = () => {
         setInput('');
         setHelperText('');

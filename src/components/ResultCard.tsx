@@ -94,7 +94,6 @@ const ResultCard = ({
                         />
                     </Box>
 
-                    {/* An empty box is a good way to add space between elements without adding margin or padding on siblings */}
                     <Box />
                     <CardActions>
                         <Button
