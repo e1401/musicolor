@@ -8,20 +8,27 @@ import {
 } from '@mui/material';
 
 import SearchIcon from '@mui/icons-material/Search';
-import { ChangeEvent, useState, KeyboardEvent } from 'react';
+import { ChangeEvent, useState, KeyboardEvent, useEffect } from 'react';
 import axios from 'axios';
 import { API_URL } from '../config/API_URL';
+
+import { useMusicolorStore } from '../hooks/store';
 
 interface SearchBoxProps {
     setSearchResults: React.Dispatch<React.SetStateAction<never[]>>;
 }
 
 const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
-    const [input, setInput] = useState<string>('');
+    const { keyword, setKeyword, removeKeyword } = useMusicolorStore();
+
+    const [input, setInput] = useState<string>(keyword || '');
     const [helperText, setHelperText] = useState('');
 
     const handleClear = () => {
         setInput('');
+        setHelperText('');
+        removeKeyword();
+        setSearchResults([]);
     };
 
     const handleInputSearch = (e: ChangeEvent<HTMLInputElement>) => {
@@ -36,10 +43,19 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
                 API_URL + `?term=${searchValue}&entity=album&limit=10`
             );
             setSearchResults(results);
+            setHelperText('');
+            setKeyword(searchValue);
         } catch (error) {
             setHelperText('No results match criteria.');
         }
     };
+
+    //PR COMMENT - useEffect here checks if input is empty, if not, it will call getSearchResults and input is stored in the state, unless cleared byy the user, an empty array means that the useEffect will only run once, when the component is mounted and the value of input is available untill it is refreshed or the tab is closed
+    useEffect(() => {
+        if (input.length > 0) {
+            getSearchResults(input);
+        }
+    }, []);
 
     return (
         <Stack
