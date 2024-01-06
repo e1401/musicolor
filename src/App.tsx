@@ -5,19 +5,24 @@ import ItemDetails from './components/ItemDetails';
 import Header from './components/Header';
 import NotFound from './pages/NotFound';
 import Footer from './components/Footer';
+import { CssBaseline } from '@mui/material';
+import Layout from './components/Layout';
 
 function App() {
-    return (
-        <>
-            <Header />
-            <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/results/:id' element={<ItemDetails />} />
-                <Route path='/*' element={<NotFound />} />
-            </Routes>
-            <Footer />
-        </>
-    );
+  return (
+    <>
+      <CssBaseline />
+      <Header />
+      <Layout>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/results/:id' element={<ItemDetails />} />
+          <Route path='/*' element={<NotFound />} />
+        </Routes>
+      </Layout>
+      <Footer />
+    </>
+  );
 }
 
 export default App;
