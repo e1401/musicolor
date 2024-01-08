@@ -42,10 +42,18 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
       } = await axios.get(
         API_URL + `?term=${searchValue}&entity=album&limit=10`
       );
-      setSearchResults(results);
-      setKeyword(searchValue);
+
+      if (results.length === 0) {
+        setHelperText('No results match criteria.');
+      } else {
+        setSearchResults(results);
+        setKeyword(searchValue);
+        setHelperText('');
+      }
     } catch (error) {
+      console.log(error);
       setHelperText('No results match criteria.');
+      setSearchResults([]);
     }
   };
 
