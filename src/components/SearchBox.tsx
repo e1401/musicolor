@@ -45,13 +45,16 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
 
       if (results.length === 0) {
         setHelperText('No results match criteria.');
+        setSearchResults([]);
+        setInput('');
       } else {
         setSearchResults(results);
         setKeyword(searchValue);
         setHelperText('');
       }
     } catch (error) {
-      console.log(error);
+      console.error('Error fetching data:', error);
+      alert('Something went wrong. Please try again.');
       setHelperText('No results match criteria.');
       setSearchResults([]);
     }
