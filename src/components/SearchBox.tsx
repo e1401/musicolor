@@ -42,14 +42,22 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
       } = await axios.get(
         API_URL + `?term=${searchValue}&entity=album&limit=10`
       );
-      setSearchResults(results);
-      setKeyword(searchValue);
+
+      if (results.length === 0) {
+        setHelperText('No results match criteria.');
+        setSearchResults([]);
+        setInput('');
+      } else {
+        setSearchResults(results);
+        setKeyword(searchValue);
+        setHelperText('');
+      }
     } catch (error) {
-      setHelperText('No results match criteria.');
+      setHelperText('Something went wrong. Please try again.');
+      setSearchResults([]);
     }
   };
 
-  //PR COMMENT - useEffect here checks if input is empty, if not, it will call getSearchResults and input is stored in the state, unless cleared byy the user, an empty array means that the useEffect will only run once, when the component is mounted and the value of input is available untill it is refreshed or the tab is closed
   useEffect(() => {
     if (input.length > 0) {
       getSearchResults(input);
