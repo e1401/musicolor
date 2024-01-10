@@ -54,7 +54,6 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
       }
     } catch (error) {
       setHelperText('Something went wrong. Please try again.');
-      setHelperText('No results match criteria.');
       setSearchResults([]);
     }
   };
