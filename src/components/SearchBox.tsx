@@ -53,14 +53,12 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
         setHelperText('');
       }
     } catch (error) {
-      console.error('Error fetching data:', error);
-      alert('Something went wrong. Please try again.');
+      setHelperText('Something went wrong. Please try again.');
       setHelperText('No results match criteria.');
       setSearchResults([]);
     }
   };
 
-  //PR COMMENT - useEffect here checks if input is empty, if not, it will call getSearchResults and input is stored in the state, unless cleared byy the user, an empty array means that the useEffect will only run once, when the component is mounted and the value of input is available untill it is refreshed or the tab is closed
   useEffect(() => {
     if (input.length > 0) {
       getSearchResults(input);
