@@ -3,13 +3,13 @@ import ResultCard from './ResultCard';
 import { Result, ResultList } from '../types/result';
 import { useState } from 'react';
 
-interface ResultsProps {
+type ResultsProps = {
   searchResults: ResultList;
-}
+};
 
 const Results = ({ searchResults }: ResultsProps) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10);
+  const itemsPerPage = 10;
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
