@@ -10,7 +10,7 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import { ChangeEvent, useState, KeyboardEvent, useEffect } from 'react';
 import axios from 'axios';
-import { API_URL } from '../config/API_URL';
+import { API_URL, NUMBER_OF_RESULTS } from '../config/API_URL';
 
 import { useMusicolorStore } from '../hooks/store';
 
@@ -40,7 +40,7 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
       const {
         data: { results },
       } = await axios.get(
-        API_URL + `?term=${searchValue}&entity=album&limit=10`
+        API_URL + `?term=${searchValue}&entity=album&limit=${NUMBER_OF_RESULTS}`
       );
 
       if (results.length === 0) {
