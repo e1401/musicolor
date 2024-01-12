@@ -9,7 +9,7 @@ type ResultsProps = {
 
 const Results = ({ searchResults }: ResultsProps) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const itemsPerPage = 12;
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -47,7 +47,7 @@ const Results = ({ searchResults }: ResultsProps) => {
             color='primary'
             size='small'
             sx={{
-              margin: '20px 0px',
+              my: '20px',
             }}
           />
         </Box>
