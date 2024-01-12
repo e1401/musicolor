@@ -40,7 +40,7 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
       const {
         data: { results },
       } = await axios.get(
-        API_URL + `?term=${searchValue}&entity=album&limit=10`
+        API_URL + `?term=${searchValue}&entity=album&limit=50`
       );
 
       if (results.length === 0) {
