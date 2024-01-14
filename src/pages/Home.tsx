@@ -4,20 +4,20 @@ import Results from '../components/Results';
 import { useState } from 'react';
 
 const Home = () => {
-  const [searchResults, setSearchResults] = useState([]);
+    const [searchResults, setSearchResults] = useState([]);
 
-  return (
-    <Stack
-      display='flex'
-      flexDirection='row'
-      flexWrap='wrap'
-      mx={{ xs: 2, md: 4 }}
-      my={4}
-    >
-      <SearchBox setSearchResults={setSearchResults} />
-      <Results searchResults={searchResults} />
-    </Stack>
-  );
+    return (
+        <Stack
+            display='flex'
+            flexDirection='row'
+            flexWrap='wrap'
+            mx={{ xs: 2, md: 4 }}
+            my={4}
+        >
+            <SearchBox setSearchResults={setSearchResults} />
+            <Results searchResults={searchResults} />
+        </Stack>
+    );
 };
 
 export default Home;
