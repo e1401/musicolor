@@ -6,7 +6,6 @@ import logo_img from '../images/logo_img.svg';
 import logo_negative from '../images/logo_negative.svg';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import { is } from 'date-fns/locale';
 
 const Header = () => {
     const theme = useTheme();
@@ -21,9 +20,7 @@ const Header = () => {
             position='static'
             sx={{
                 boxShadow: 'none',
-                backgroundColor: isDarkMode
-                    ? palette.background.paper
-                    : 'transparent',
+                backgroundColor: isDarkMode ? palette.background.paper : 'transparent',
                 height: '64px',
                 mb: 3,
             }}
@@ -55,9 +52,7 @@ const Header = () => {
                     ) : (
                         <Brightness4Icon
                             sx={{
-                                color: isDarkMode
-                                    ? palette.primary.main
-                                    : palette.primary.dark,
+                                color: isDarkMode ? palette.primary.main : palette.primary.dark,
                             }}
                         />
                     )}

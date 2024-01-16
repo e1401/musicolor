@@ -1,15 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Item } from '../types/item';
-import {
-    Box,
-    Button,
-    Chip,
-    Grid,
-    Stack,
-    Typography,
-    Divider,
-} from '@mui/material';
+import { Box, Button, Chip, Stack, Typography, Divider } from '@mui/material';
 import { usePalette } from 'react-palette';
 import { showArtwork } from '../utils/showArtwork';
 import { format } from 'date-fns';
@@ -34,7 +26,7 @@ const ItemDetails = () => {
     }, [id, url]);
 
     const { data: artworkColors } = usePalette(
-        showArtwork(item ? item.artworkUrl100 : '')
+        showArtwork(item ? item.artworkUrl100 : ''),
     );
 
     const downloadJson = () => {
@@ -66,10 +58,7 @@ const ItemDetails = () => {
                             </Typography>
                         ) : null}
                         <Stack gap={2} direction={{ xs: 'column', md: 'row' }}>
-                            <Box
-                                display='flex'
-                                flexDirection={{ xs: 'column', md: 'row' }}
-                            >
+                            <Box display='flex' flexDirection={{ xs: 'column', md: 'row' }}>
                                 <img
                                     src={showArtwork(item.artworkUrl100)}
                                     alt={item.artistName}
@@ -100,61 +89,42 @@ const ItemDetails = () => {
                                         />
 
                                         <Typography variant='body2'>
-                                            Genre: {item.primaryGenreName}
+                      Genre: {item.primaryGenreName}
                                         </Typography>
                                         <Typography variant='body2'>
-                                            Release date:{' '}
-                                            {format(
-                                                new Date(item.releaseDate),
-                                                'MM/dd/yyyy'
-                                            )}
+                      Release date:{' '}
+                                            {format(new Date(item.releaseDate), 'MM/dd/yyyy')}
                                         </Typography>
                                         <Divider />
-                                        <Typography variant='h6'>
-                                            Colors
-                                        </Typography>
+                                        <Typography variant='h6'>Colors</Typography>
                                         {artworkColors
-                                            ? Object.keys(artworkColors).map(
-                                                  (color) => (
-                                                      <Stack
-                                                          direction='row'
-                                                          key={color}
-                                                          alignContent='center'
-                                                          alignItems='center'
-                                                          gap={1}
-                                                          marginInlineStart={1}
-                                                      >
-                                                          <Box
-                                                              sx={{
-                                                                  width: '20px',
-                                                                  height: '20px',
-                                                                  borderRadius:
-                                                                      '50%',
-                                                                  backgroundColor:
-                                                                      artworkColors[
-                                                                          color
-                                                                      ],
-                                                              }}
-                                                          />
-                                                          <Typography
-                                                              variant='body2'
-                                                              color='text'
-                                                          >
-                                                              {
-                                                                  artworkColors[
-                                                                      color
-                                                                  ]
-                                                              }
-                                                          </Typography>
-                                                      </Stack>
-                                                  )
-                                              )
+                                            ? Object.keys(artworkColors).map((color) => (
+                                                <Stack
+                                                    direction='row'
+                                                    key={color}
+                                                    alignContent='center'
+                                                    alignItems='center'
+                                                    gap={1}
+                                                    marginInlineStart={1}
+                                                >
+                                                    <Box
+                                                        sx={{
+                                                            width: '20px',
+                                                            height: '20px',
+                                                            borderRadius: '50%',
+                                                            backgroundColor: artworkColors[color],
+                                                        }}
+                                                    />
+                                                    <Typography variant='body2' color='text'>
+                                                        {artworkColors[color]}
+                                                    </Typography>
+                                                </Stack>
+                                            ))
                                             : null}
                                         <Divider />
                                         <Typography variant='caption'>
-                                            Download color scheme and import to
-                                            Figma or any other design tool that
-                                            supports json for colors
+                      Download color scheme and import to Figma or any other
+                      design tool that supports json for colors
                                         </Typography>
                                         <Box display='flex' gap={4}>
                                             <Button
@@ -169,7 +139,7 @@ const ItemDetails = () => {
                                                 }}
                                                 onClick={() => downloadJson()}
                                             >
-                                                download
+                        download
                                             </Button>
                                             <Button
                                                 aria-labelledby='back-to-search'
@@ -183,7 +153,7 @@ const ItemDetails = () => {
                                                 }}
                                                 onClick={() => navigate('/')}
                                             >
-                                                Back to search
+                        Back to search
                                             </Button>
                                         </Box>
                                     </Box>
