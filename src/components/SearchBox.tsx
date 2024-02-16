@@ -75,7 +75,7 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
       my={4}
       gap={4}
     >
-      <Box minWidth='60vw' width='105%'>
+      <Box minWidth='40vw' width='105%'>
         <TextField
           aria-describedby='input-search'
           fullWidth
