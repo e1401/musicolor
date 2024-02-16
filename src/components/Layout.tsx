@@ -9,12 +9,12 @@ const Layout = ({ children }: LayoutProps) => {
     <Box
       display='flex'
       flexDirection='column'
-      flexWrap='wrap'
+      align-content='center'
+      justifyContent='center'
       sx={(theme) => ({
         justifyContent: 'center',
         [theme.breakpoints.down('sm')]: {
           justifyContent: 'flex-start',
-          pt: 12,
         },
       })}
       minHeight={'calc(100vh - (2*64px))'}

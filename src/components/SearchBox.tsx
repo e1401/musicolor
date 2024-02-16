@@ -66,27 +66,16 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
 
   return (
     <Stack
-      flexDirection='row'
-      flexWrap='wrap'
-      justifyContent='flex-start'
+      display='flex'
+      flexDirection='column'
       alignItems='center'
-      mx={{ xs: 2, md: 4 }}
+      alignContent='center'
+      justifyContent='center'
+      mx={{ xs: 1, md: 4 }}
       my={4}
       gap={4}
-      sx={(theme) => ({
-        width: '100%',
-        [theme.breakpoints.up('md')]: {
-          maxWidth: '90%',
-        },
-        [theme.breakpoints.up('lg')]: {
-          maxWidth: '80%',
-        },
-        [theme.breakpoints.up('xl')]: {
-          maxWidth: '60%',
-        },
-      })}
     >
-      <Box flexGrow={3}>
+      <Box minWidth='60vw' width='105%'>
         <TextField
           aria-describedby='input-search'
           fullWidth

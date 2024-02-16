@@ -12,6 +12,7 @@ const Home = () => {
       flexDirection='row'
       flexWrap='wrap'
       justifyContent='center'
+      alignItems='center'
       mx={{ xs: 2, md: 4 }}
       my={4}
     >
