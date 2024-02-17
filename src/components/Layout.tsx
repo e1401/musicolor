@@ -10,13 +10,7 @@ const Layout = ({ children }: LayoutProps) => {
       display='flex'
       flexDirection='column'
       align-content='center'
-      justifyContent='center'
-      sx={(theme) => ({
-        justifyContent: 'center',
-        [theme.breakpoints.down('sm')]: {
-          justifyContent: 'flex-start',
-        },
-      })}
+      justifyContent={{ xs: 'flex-start', md: 'center' }}
       minHeight={'calc(100vh - (2*64px))'}
       pb={1}
     >

@@ -67,15 +67,16 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
   return (
     <Stack
       display='flex'
-      flexDirection='column'
+      flexDirection={{ xs: 'column', md: 'row' }}
       alignItems='center'
       alignContent='center'
       justifyContent='center'
+      width={'100%'}
       mx={{ xs: 1, md: 4 }}
       my={4}
       gap={4}
     >
-      <Box minWidth='40vw' width='105%'>
+      <Stack width={{ xs: '90%', md: '70%' }}>
         <TextField
           aria-describedby='input-search'
           fullWidth
@@ -110,7 +111,7 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
         >
           {helperText || ' '}
         </FormHelperText>
-      </Box>
+      </Stack>
       <Stack
         spacing={2}
         direction='row'
