@@ -1,3 +1,5 @@
+import { useState, useEffect, ChangeEvent, KeyboardEvent } from 'react';
+import axios from 'axios';
 import {
   Stack,
   Box,
@@ -6,29 +8,33 @@ import {
   Button,
   FormHelperText,
 } from '@mui/material';
-
 import SearchIcon from '@mui/icons-material/Search';
-import { ChangeEvent, useState, KeyboardEvent, useEffect } from 'react';
-import axios from 'axios';
-import { API_URL, NUMBER_OF_RESULTS } from '../config/API_URL';
-
+import { API_URL, NUMBER_OF_RESULTS, RANDOM_ARTIST_API_URL } from '../config/API_URL';
 import { useMusicolorStore } from '../hooks/store';
 
 interface SearchBoxProps {
   setSearchResults: React.Dispatch<React.SetStateAction<never[]>>;
 }
 
+interface Song {
+  'im:artist': {
+    label: string;
+  };
+}
+
 const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
   const { keyword, setKeyword, removeKeyword } = useMusicolorStore();
 
   const [input, setInput] = useState<string>(keyword || '');
-  const [helperText, setHelperText] = useState('');
+  const [helperText, setHelperText] = useState<string>('');
+  const [randomArtist, setRandomArtist] = useState<string>('');
 
   const handleClear = () => {
     setInput('');
     setHelperText('');
     removeKeyword();
     setSearchResults([]);
+    setRandomArtist('');
   };
 
   const handleInputSearch = (e: ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +46,7 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
       const {
         data: { results },
       } = await axios.get(
-        API_URL + `?term=${searchValue}&entity=album&limit=${NUMBER_OF_RESULTS}`
+        `${API_URL}?term=${searchValue}&entity=album&limit=${NUMBER_OF_RESULTS}`
       );
 
       if (results.length === 0) {
@@ -55,6 +61,32 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
     } catch (error) {
       setHelperText('Something went wrong. Please try again.');
       setSearchResults([]);
+    }
+  };
+
+  const getRandomArtist = async () => {
+    try {
+      const { data } = await axios.get(RANDOM_ARTIST_API_URL);
+
+      const songs: Song[] = data.feed.entry;
+      if (!songs || songs.length === 0) {
+        console.log('No songs found.');
+        return;
+      }
+
+      // Extract artist names from the top 10 songs
+      const artists = songs.map(song => song['im:artist'].label);
+
+      // Select a random artist
+      const randomIndex = Math.floor(Math.random() * artists.length);
+      const randomArtist = artists[randomIndex];
+
+      setRandomArtist(randomArtist);
+
+      // Trigger search using the random artist name
+      getSearchResults(randomArtist);
+    } catch (error) {
+      console.error('Something went wrong. Please try again.', error);
     }
   };
 
@@ -149,6 +181,15 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
           aria-label='clear'
         >
           Clear
+        </Button>
+        <Button
+          onClick={getRandomArtist}
+          variant='contained'
+          color='secondary'
+          size='large'
+          aria-label='random-artist'
+        >
+          Random
         </Button>
       </Stack>
     </Stack>
