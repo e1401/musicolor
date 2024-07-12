@@ -9,7 +9,11 @@ import {
   FormHelperText,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { API_URL, NUMBER_OF_RESULTS, RANDOM_ARTIST_API_URL } from '../config/API_URL';
+import {
+  API_URL,
+  NUMBER_OF_RESULTS,
+  RANDOM_ARTIST_API_URL,
+} from '../config/API_URL';
 import { useMusicolorStore } from '../hooks/store';
 
 interface SearchBoxProps {
@@ -75,7 +79,7 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
       }
 
       // Extract artist names from the top 10 songs
-      const artists = songs.map(song => song['im:artist'].label);
+      const artists = songs.map((song) => song['im:artist'].label);
 
       // Select a random artist
       const randomIndex = Math.floor(Math.random() * artists.length);
@@ -85,6 +89,7 @@ const SearchBox = ({ setSearchResults }: SearchBoxProps) => {
 
       // Trigger search using the random artist name
       getSearchResults(randomArtist);
+      setInput(randomArtist);
     } catch (error) {
       console.error('Something went wrong. Please try again.', error);
     }
